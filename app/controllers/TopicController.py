@@ -1,23 +1,80 @@
-from flask import Blueprint
+import sys
+from flask import Blueprint, jsonify, request
+from app.resources.TopicResource import TopicResource
 
 topic = Blueprint('topic', __name__)
 
-@topic.route('/',methods=['GET'])
+@topic.route('/',methods=['GET'] )
 def getTopicList():
-	return 'GET Topic Listing'
+	data = request.args
+
+	result = TopicResource.getTopicList(data)
+
+	output = {
+		'status' : 'ok',
+		'data' : result
+	}
+	return jsonify(output)
+
+@topic.route('/top',methods=['GET'])
+def getTop():
+	data = request.args
+	result = TopicResource.getTop(data)
+
+	output = {
+		'status' : 'ok',
+		'data' : result
+	}
+	return jsonify(output)
+
+@topic.route('/<int:topic_id>',methods=['GET'])
+def getTopic(topic_id):
+	result = TopicResource.getTopic(topic_id)
+	output = {
+		'status' : 'ok',
+		'data' : result
+	}
+	return jsonify(output)
 
 @topic.route('/',methods=['POST'])
 def createTopic():
-	return 'POST Topic'
+	data = request.form
+	result = TopicResource.createTopic(data)
 
-@topic.route('/<id>',methods=['GET'])
-def getTopic():
-	return 'GET Topic Info'
+	output = {
+		'status' : 'ok',
+		'data' : result
+	}
+	return jsonify(output)
 
-@topic.route('/<id>',methods=['PUT'])
-def updateTopic():
-	return 'PUT Topic'
+
+@topic.route('/<int:topic_id>/upvote',methods=['POST'])
+def upvoteTopic(topic_id):
+	result = TopicResource.upvoteTopic(topic_id)
+
+	output = {
+		'status' : 'ok',
+		'data' : result
+	}
+	return jsonify(output)
+
+@topic.route('/<int:topic_id>/downvote',methods=['POST'])
+def downTopic(topic_id):
+	result = TopicResource.downvoteTopic(topic_id)
+
+	output = {
+		'status' : 'ok',
+		'data' : result
+	}
+	return jsonify(output)
 	
-@topic.route('/<id>',methods=['DELETE'])
-def deleteTopic():
-	return 'DELETE TOPIC'
+@topic.route('/<int:topic_id>',methods=['DELETE'])
+def deleteTopic(topic_id):
+	result = TopicResource.deleteTopic(topic_id)
+
+	output = {
+		'status' : 'ok',
+		'data' : result
+	}
+	return jsonify(output)
+
