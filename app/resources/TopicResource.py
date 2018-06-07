@@ -8,7 +8,16 @@ class TopicResource:
 	def getTopic(topic_id):
 		pass
 	def createTopic(data):
-		pass
+		def createTopic(data):
+		topic = data.get('topic') if data.get('topic') is not None else ""
+		utils.checkIfEmpty(topic)
+		utils.checkIfLengthExceed(topic)
+		model = TopicModel(topic)
+
+		TopicModel.topics[model.id] = model	
+		TopicModel.vote_lookup.append(model.id)
+		
+		return model.process()
 
 	def upvoteTopic(topic_id):
 		pass	
