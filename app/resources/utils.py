@@ -7,6 +7,10 @@ class CustomError(Exception):
 	def __str__(self):
 		return self.message
 
+def checkIfExist(topics, topic_id):
+	if topic_id not in topics :
+		raise CustomError('Topic id does not exist')
+
 def checkIfEmpty(topic):
 	if topic == "":
 		raise CustomError('Topic is empty')
