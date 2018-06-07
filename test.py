@@ -8,15 +8,18 @@ class CarouditTestCase(unittest.TestCase):
 	def tearDown(self):
 		pass
 
-	def test_home_status(self):
-		result = {
-			'status': 'ok',
-			'result' : 'Successful',
-		}
+	# def test_home_status(self):
+	# 	result = {
+	# 		'status': 'ok',
+	# 		'result' : 'Successful',
+	# 	}
 
-		response = self.app.get('/')
-		self.assertEqual(response.status_code,200)
-		self.assertEqual(response.json, result )
+	# 	response = self.app.get('/')
+	# 	self.assertEqual(response.status_code,200)
+	# 	self.assertEqual(response.json, result )
+
+	def test_topic_listing(self):
+		pass
 
 	def test_topic_create(self):
 		pass
