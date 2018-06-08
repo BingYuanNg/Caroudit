@@ -37,14 +37,27 @@ class TopicResource:
 
 		TopicModel.topics[model.id] = model	
 		TopicModel.vote_lookup.append(model.id)
-		
+		utils.sortVote(TopicModel.vote_lookup, TopicModel.topics)
+
 		return model.process()
 
 	def upvoteTopic(topic_id):
-		pass	
+		utils.checkIfExist(TopicModel.topics,topic_id)
+		model = TopicModel.topics[topic_id]
+
+		model.upvote()
+		utils.sortVote(TopicModel.vote_lookup, TopicModel.topics)
+
+		return model.process()
 
 	def downvoteTopic(topic_id):
-		pass
+		utils.checkIfExist(TopicModel.topics,topic_id)
+		model = TopicModel.topics[int(topic_id)]
+
+		model.downvote()
+		utils.sortVote(TopicModel.vote_lookup, TopicModel.topics)
+
+		return model.process()
 
 	def deleteTopic(topic_id):
 		utils.checkIfExist(TopicModel.topics,topic_id)
@@ -56,4 +69,6 @@ class TopicResource:
 		return True
 
 	def getTop(data):
-		pass
+		count = int(data.get('count')) if data.get('count') is not None else 20
+		
+		return [TopicModel.topics[key].process() for key in TopicModel.vote_lookup[:count]]
