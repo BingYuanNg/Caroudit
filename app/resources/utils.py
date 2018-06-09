@@ -35,7 +35,7 @@ def checkIfSortable(sortable, option):
 		raise CustomError('Wrong sort option')
 	else:
 		return option
-		
+
 def createPaginate(offset,limit,count):
 	print(offset,limit,count)
 	paging = {}
@@ -57,5 +57,5 @@ def createPaginate(offset,limit,count):
 			'limit' : limit 
 		}
 		paging['prev'] = "{}?{}".format(request.base_url, urllib.parse.urlencode(query))
-	 
+	
 	return paging
