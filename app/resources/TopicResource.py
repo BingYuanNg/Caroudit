@@ -29,7 +29,6 @@ class TopicResource:
 		return model.process()
 
 	def createTopic(data):
-		def createTopic(data):
 		topic = data.get('topic') if data.get('topic') is not None else ""
 		utils.checkIfEmpty(topic)
 		utils.checkIfLengthExceed(topic)
