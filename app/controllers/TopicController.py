@@ -1,5 +1,6 @@
 import sys
-from flask import Blueprint, jsonify, request
+from flask import Blueprint, jsonify, request, Response
+import json
 from app.resources.TopicResource import TopicResource
 
 topic = Blueprint('topic', __name__)
@@ -14,7 +15,7 @@ def getTopicList():
 		'status' : 'ok',
 		'data' : result
 	}
-	return jsonify(output)
+	return Response(json.dumps(output), mimetype='application/json')
 
 @topic.route('/top',methods=['GET'])
 def getTop():
@@ -25,7 +26,7 @@ def getTop():
 		'status' : 'ok',
 		'data' : result
 	}
-	return jsonify(output)
+	return Response(json.dumps(output), mimetype='application/json')
 
 @topic.route('/<int:topic_id>',methods=['GET'])
 def getTopic(topic_id):
@@ -34,7 +35,7 @@ def getTopic(topic_id):
 		'status' : 'ok',
 		'data' : result
 	}
-	return jsonify(output)
+	return Response(json.dumps(output), mimetype='application/json')
 
 @topic.route('/',methods=['POST'])
 def createTopic():
@@ -45,7 +46,7 @@ def createTopic():
 		'status' : 'ok',
 		'data' : result
 	}
-	return jsonify(output)
+	return Response(json.dumps(output), mimetype='application/json')
 
 
 @topic.route('/<int:topic_id>/upvote',methods=['POST'])
@@ -56,7 +57,7 @@ def upvoteTopic(topic_id):
 		'status' : 'ok',
 		'data' : result
 	}
-	return jsonify(output)
+	return Response(json.dumps(output), mimetype='application/json')
 
 @topic.route('/<int:topic_id>/downvote',methods=['POST'])
 def downTopic(topic_id):
@@ -66,7 +67,7 @@ def downTopic(topic_id):
 		'status' : 'ok',
 		'data' : result
 	}
-	return jsonify(output)
+	return Response(json.dumps(output), mimetype='application/json')
 	
 @topic.route('/<int:topic_id>',methods=['DELETE'])
 def deleteTopic(topic_id):
@@ -76,5 +77,5 @@ def deleteTopic(topic_id):
 		'status' : 'ok',
 		'data' : result
 	}
-	return jsonify(output)
+	return Response(json.dumps(output), mimetype='application/json')
 
