@@ -23,13 +23,18 @@ def checkIfLengthExceed(topic,length=255):
 		raise CustomError('Topic exceed length 255')
 
 def sortVote(vote_lookup, topics):
-	for i in range(len(vote_lookup)-1,0,-1):
-		if topics[vote_lookup[i]].votes <= topics[vote_lookup[i-1]].votes:
-			continue
-		for j in range(i):
-			if topics[vote_lookup[i]].votes > topics[vote_lookup[j]].votes:
-				vote_lookup[j],vote_lookup[j+1:i+1] = vote_lookup[i],vote_lookup[j:i]
+	for i in vote_lookup:
+		j = vote_lookup.index(i)
+		#i is not the first element
+		while j>0:
+			#not in order
+			if topics[vote_lookup[j-1]].votes < topics[vote_lookup[j]].votes:
+				#swap
+				vote_lookup[j-1],vote_lookup[j] = vote_lookup[j],vote_lookup[j-1]
+			else:
+				#in order
 				break
+			j = j-1
 
 def checkIfSortable(sortable, option):
 	if option not in sortable:
