@@ -60,8 +60,7 @@ class TopicResource:
 
 	def deleteTopic(topic_id):
 		if utils.checkIfExist(TopicModel.topics,topic_id):
-			model = TopicModel.topics[topic_id]
-			del model
+			del TopicModel.topics[topic_id]
 			if topic_id in TopicModel.vote_lookup: TopicModel.vote_lookup.remove(topic_id)		
 		return True
 
