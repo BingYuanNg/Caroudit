@@ -59,12 +59,10 @@ class TopicResource:
 		return model.process()
 
 	def deleteTopic(topic_id):
-		utils.checkIfExist(TopicModel.topics,topic_id)
-		model = TopicModel.topics[topic_id]
-		
-		del model
-		TopicModel.vote_lookup.remove(topic_id)		
-		
+		if utils.checkIfExist(TopicModel.topics,topic_id):
+			model = TopicModel.topics[topic_id]
+			del model
+			if topic_id in TopicModel.vote_lookup: TopicModel.vote_lookup.remove(topic_id)		
 		return True
 
 	def getTop(data):

@@ -10,6 +10,7 @@ class CustomError(Exception):
 def checkIfExist(topics, topic_id):
 	if topic_id not in topics :
 		raise CustomError('Topic id does not exist')
+	return  True
 
 def checkIfEmpty(topic):
 	if topic == "":
