@@ -1,5 +1,5 @@
 # Caroudit
-This project is created using python with flask framemork.
+This project is created using python with flask framework.
 # Installation
 1. Clone the project
 ```
