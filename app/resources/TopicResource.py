@@ -6,7 +6,7 @@ class TopicResource:
 		# sort option offset limit
 		offset = int(data.get('offset')) if data.get('offset') is not None else 1
 		limit = int(data.get('limit')) if data.get('offset') is not None else 10
-		sort = string(data.get('sort')) if data.get('sort') is not None else "-created_at"
+		sort = str(data.get('sort')) if data.get('sort') is not None else "-created_at"
 		# for sort option, - for descending order , + for ascending
 		reverse = True if sort.startswith('-') else False
 		sortable = ['votes', 'created_at']
