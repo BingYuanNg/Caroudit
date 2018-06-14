@@ -31,6 +31,9 @@ python run.py
 |POST| /topic/:id/upvote | upvote topic by id||
 |POST| /topic/:id/downvote | downvote topic by id||
 |DELETE| /topic/:id | delete topic by id||
+
+Details about parameters can be seen in the comments in controller.
+
 # Path taken
 ### Storing Topics: 
 
