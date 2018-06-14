@@ -17,10 +17,20 @@ pip install -r requirement.txt
 ```
 python -m unittest
 ```
-4.
+4. Start the webserver
 ```
 python run.py
 ```
+# API endpoints
+|Type|Route|Description|Required|Optional|
+|---|--------|----------------|---|---|
+|GET| /topic/ | get topic listing||offset=number,<br >limit=number,<br >sort=string|
+|GET| /topic/top | get top topics|||
+|GET| /topic/:id | get topic by id|||
+|POST| /topic/ |create topic|topic||
+|POST| /topic/:id/upvote | upvote topic by id||
+|POST| /topic/:id/downvote | downvote topic by id||
+|DELETE| /topic/:id | delete topic by id||
 # Path taken
 ### Storing Topics: 
 
