@@ -63,7 +63,7 @@ def getTopic(topic_id):
 
 
 """
-@api {post} /topic/:id Create Topic
+@api {post} /topic/ Create Topic
 @apiName CreateTopic
 @apiGroup Topic
 
